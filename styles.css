@@ -1,0 +1,104 @@
+:root {
+    --clr-green: #81b29a;
+    --clr-yellow: rgb(246, 225, 102);
+    --clr-salmon: rgb(234, 134, 123);
+    --clr-bg-lt: rgb(254, 223, 179);
+}
+
+body {
+    min-height: 100vh;
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--clr-green);
+}
+
+header {
+    background-image: url("./images/ed-robertson-eeSdJfLfx1A-unsplash.jpg");
+    background-size: cover;
+    padding: 2rem 0rem;
+}
+
+.header-container, .footer-container {
+    display: flex;
+    background-color: var(--clr-green);
+    color: var(--clr-yellow);
+    align-items: center;
+    justify-content: space-around;
+}
+
+.header-container button {
+    background-color: var(--clr-yellow);
+    border-radius: 10px;
+    padding: 3px 10px;
+    border: none;
+    box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.3);
+}
+
+.header-container button:hover {
+    cursor: pointer;
+    background-color: var(--clr-salmon);
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+    padding-bottom: 5px;
+    text-decoration: underline;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 1rem;
+}
+
+.card {
+    max-width: 250px;
+    background-color: var(--clr-bg-lt);
+    border-radius: 10px;
+    padding: .5rem 1rem;
+}
+
+.by, .pages {
+    display: flex;
+    gap: .5rem;
+    padding-bottom: 5px;
+}
+
+.read {
+    background-color: var(--clr-salmon);
+    border-radius: 7px;
+    border: none;
+    box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.3);
+}
+
+.read:hover {
+    cursor: pointer;
+    background-color: var(--clr-yellow);
+}
+
+footer {
+    background-image: url('./images/ugur-akdemir-XT-o5O458as-unsplash.jpg');
+    background-size: cover;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+    padding: 1rem 0;
+}
+
+.footer-container {
+    flex: 1;
+    justify-content: flex-start;
+    gap: .5rem;
+    padding: 0 1rem;
+}
+
+.footer-container a {
+    text-decoration: none;
+    color: black;
+}
