@@ -3,6 +3,7 @@
     --clr-yellow: rgb(246, 225, 102);
     --clr-salmon: rgb(234, 134, 123);
     --clr-bg-lt: rgb(254, 223, 179);
+    --clr-bg-yellow: rgb(247, 240, 170);
 }
 
 body {
@@ -17,6 +18,7 @@ header {
     background-image: url("./images/ed-robertson-eeSdJfLfx1A-unsplash.jpg");
     background-size: cover;
     padding: 2rem 0rem;
+    grid-area: header;
 }
 
 .header-container, .footer-container {
@@ -44,26 +46,42 @@ h1 {
     font-size: 2rem;
 }
 
+aside {
+    width: 250px;
+    background-color: var(--clr-bg-yellow);
+
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: .5rem;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 1rem;
+    grid-area: main;
+}
+
 h2 {
     font-size: 1.25rem;
     padding-bottom: 5px;
     text-decoration: underline;
 }
 
-main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    padding: 1rem;
-}
-
 .card {
-    max-width: 250px;
+    max-width: 300px;
     background-color: var(--clr-bg-lt);
     border-radius: 10px;
     padding: .5rem 1rem;
 }
 
-.by, .pages {
+.by, .holder-pages {
     display: flex;
     gap: .5rem;
     padding-bottom: 5px;
@@ -88,7 +106,8 @@ footer {
     display: flex;
     justify-content: center;
     gap: .5rem;
-    padding: 1rem 0;
+    padding: 2rem 0;
+    grid-area: footer;
 }
 
 .footer-container {
@@ -101,4 +120,20 @@ footer {
 .footer-container a {
     text-decoration: none;
     color: black;
+}
+
+@media (min-width: 600px) {
+    body {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: 
+        "header header"
+        "sidebar main"
+        "footer footer"
+        ;
+    }
+    main {
+        justify-content: space-around;
+    }
 }
