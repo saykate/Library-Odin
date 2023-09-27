@@ -3,7 +3,9 @@
     --clr-yellow: rgb(246, 225, 102);
     --clr-salmon: rgb(234, 134, 123);
     --clr-bg-lt: rgb(254, 223, 179);
+    --clr-bg-lt-blue: rgb(179, 225, 254);
     --clr-bg-yellow: rgb(247, 240, 170);
+   --box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.3);
 }
 
 body {
@@ -26,20 +28,9 @@ header {
     background-color: var(--clr-green);
     color: var(--clr-yellow);
     align-items: center;
-    justify-content: space-around;
-}
-
-.header-container button {
-    background-color: var(--clr-yellow);
-    border-radius: 10px;
-    padding: 3px 10px;
-    border: none;
-    box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.3);
-}
-
-.header-container button:hover {
-    cursor: pointer;
-    background-color: var(--clr-salmon);
+    justify-content: flex-start;
+    gap: .5rem;
+    padding: 0 1rem;
 }
 
 h1 {
@@ -47,22 +38,41 @@ h1 {
 }
 
 aside {
-    width: 250px;
     background-color: var(--clr-bg-yellow);
-
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1rem;
+    justify-content: flex-start;
 }
 
 .form-container {
+    max-width: 300px;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
     gap: .5rem;
+}
+
+.add-book {
+    align-self: flex-start;
+    background-color: var(--clr-yellow);
+    border-radius: 10px;
+    padding: 3px 10px;
+    margin-top: .5rem;
+    border: none;
+    box-shadow: var(--box-shadow)
+}
+
+.add-book:hover {
+    cursor: pointer;
+    background-color: var(--clr-salmon);
 }
 
 main {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
+    justify-content: center;
     padding: 1rem;
     gap: 1rem;
     grid-area: main;
@@ -79,6 +89,7 @@ h2 {
     background-color: var(--clr-bg-lt);
     border-radius: 10px;
     padding: .5rem 1rem;
+    box-shadow: var(--box-shadow);
 }
 
 .by, .holder-pages {
@@ -87,16 +98,30 @@ h2 {
     padding-bottom: 5px;
 }
 
-.read {
+.card-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.read-status, .delete {
     background-color: var(--clr-salmon);
     border-radius: 7px;
     border: none;
-    box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.3);
+    box-shadow: var(--box-shadow)
 }
 
-.read:hover {
+.read-status:hover, .delete:hover {
     cursor: pointer;
     background-color: var(--clr-yellow);
+}
+
+.read-check {
+    display: flex;
+    gap: .5rem;
+}
+
+.checkmark {
+    display: none;
 }
 
 footer {
@@ -112,9 +137,6 @@ footer {
 
 .footer-container {
     flex: 1;
-    justify-content: flex-start;
-    gap: .5rem;
-    padding: 0 1rem;
 }
 
 .footer-container a {
@@ -135,5 +157,8 @@ footer {
     }
     main {
         justify-content: space-around;
+    }
+    .header-container, .footer-container {
+        padding-left: 3rem;
     }
 }
