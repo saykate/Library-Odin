@@ -115,8 +115,8 @@ function addNewBook(e) {
     }
 
     const newBook = {
-        title: bookTitle.value, 
-        author: bookAuthor.value,  
+        title: capitalize(bookTitle.value), 
+        author: capitalize(bookAuthor.value),  
         pages: bookPages.value
     }
 
@@ -125,6 +125,11 @@ function addNewBook(e) {
     makeBookCard(newBook);
     unreadCount++; 
     updateUnreadCount(); 
+}
+
+//Capitalize the first letter of each word for the Title and Author
+function capitalize(string) {
+    return string.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
 
 addBook.addEventListener('click', addNewBook);
