@@ -1,17 +1,31 @@
 const addBook = document.querySelector('.add-book');
 const readStatus = document.querySelectorAll('.read-status');
 const deleteBk = document.querySelectorAll('.delete');
+const readNum = document.querySelector('.read-num');
+const unreadNum = document.querySelector('.unread-num');
 const bookTitle = document.querySelector('#title');
 const bookAuthor = document.querySelector('#author');
 const bookPages = document.querySelector('#pages');
 // const bookCard = document.querySelectorAll('.card');
+
 let form = document.querySelector('form');
+let readCount = 0;
+let unreadCount = 0;
+
+function updateReadCount() {
+    console.log(readCount)
+    readNum.textContent = readCount;
+}
+
+function updateUnreadCount() {
+    console.log(unreadCount)
+    unreadNum.textContent = unreadCount;
+}
 
 const library = [];
 
-
 //add the "By:" & "Pages:" <p>'s and buttons to each card
-//Why do I loop through the array? Am I not creating each one as it's being input?
+//make sure new books have .unread class
 
 function addNewBook(e) {
     e.preventDefault();
@@ -33,6 +47,8 @@ function addNewBook(e) {
     library.push(newBook);
     console.log(library);
     form.reset();
+    unreadCount++; //will this go here or in the library card function?
+    updateUnreadCount(); //will this go here or in the library card function?
 }
 
 function readUnread(event) {
@@ -46,17 +62,26 @@ function readUnread(event) {
         thisCard.style.backgroundColor = 'var(--clr-bg-lt-blue)';
         event.target.classList.remove('unread');
         event.target.classList.add('read');
+        readCount++;
+        updateReadCount();
+        unreadCount--;
+        updateUnreadCount();
     } 
         else if(event.target.classList.contains('read')) {
         thisCheck.style.display = 'none';   
         thisCard.style.backgroundColor = 'var(--clr-bg-lt)';
         event.target.classList.remove('read');
         event.target.classList.add('unread');
+        unreadCount++;
+        updateUnreadCount();
+        readCount--;
+        updateReadCount();
     } 
 }
 }
 
-//when the .card is being created dynamically, I may need to move this into main or something...
+//not currently functioning
+//when the .card is being created dynamically, I may need to move this into the function where it's being added (see hackathon project)
 function deleteBook(event) {
     console.log('delete button clicked')
     const thisCard = event.target.closest('.card');
@@ -65,8 +90,9 @@ function deleteBook(event) {
   if (event.target.classList.contains('delete')) {
     thisCard.remove();
   }
-}
-}
+}  
+//need to update read or unread - how do I find the status? 
+  }
 
 addBook.addEventListener('click', addNewBook);
 
