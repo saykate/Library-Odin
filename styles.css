@@ -91,17 +91,15 @@ h2 {
 }
 
 .card {
-    max-width: 300px;
+    width: 250px;
     background-color: var(--clr-bg-lt);
     border-radius: 10px;
     padding: .5rem 1rem;
     box-shadow: var(--box-shadow);
 }
 
-.by, .holder-pages {
-    display: flex;
-    gap: .5rem;
-    padding-bottom: 5px;
+.para {
+    padding-bottom: 10px;
 }
 
 .card-buttons {
@@ -127,7 +125,12 @@ h2 {
 }
 
 .checkmark {
+    width: 25px;
     display: none;
+}
+
+.trash {
+    width: 25px;
 }
 
 footer {
@@ -143,6 +146,7 @@ footer {
 
 .footer-container {
     flex: 1;
+    justify-content: flex-start;
 }
 
 .footer-container a {

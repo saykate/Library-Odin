@@ -3,12 +3,13 @@ const readStatus = document.querySelectorAll('.read-status');
 const deleteBk = document.querySelectorAll('.delete');
 const readNum = document.querySelector('.read-num');
 const unreadNum = document.querySelector('.unread-num');
+const cardContainer = document.querySelector('.card-container')
 const bookTitle = document.querySelector('#title');
 const bookAuthor = document.querySelector('#author');
 const bookPages = document.querySelector('#pages');
-// const bookCard = document.querySelectorAll('.card');
+const library = [];
 
-let form = document.querySelector('form');
+let form = document.querySelector('form'); //should this be let or const?
 let readCount = 0;
 let unreadCount = 0;
 
@@ -22,14 +23,53 @@ function updateUnreadCount() {
     unreadNum.textContent = unreadCount;
 }
 
-const library = [];
+//create a book card for each book
+function makeBookCard() {
+    library.forEach((book) => {
+        const bookCard = document.createElement('div');
+        bookCard.classList.add('card');
+        const hTwo = document.createElement('h2');
+        hTwo.textContent = book.title;
+        const para1 = document.createElement('p');
+        para1.textContent = 'By:  ' + book.author;
+        para1.classList.add('para')
+        const para2 = document.createElement('p');
+        para2.textContent = 'Pages:  ' + book.pages;
+        para2.classList.add('para')
+        const bookButtons = document.createElement('div');
+        bookButtons.classList.add('card-buttons');
+        const readAndCheck = document.createElement('div');
+        readAndCheck.classList.add('read-check');
+        const readButton = document.createElement('button');
+        readButton.textContent = 'Read';
+        readButton.classList.add('read-status');
+        readButton.classList.add('unread');
+        const readCheck = document.createElement('img');
+        readCheck.classList.add('checkmark');
+        readCheck.setAttribute('src', './images/check-bold.svg');
+        const deleteButt = document.createElement('button');
+        deleteButt.classList.add('delete');
+        const trash = document.createElement('img');
+        trash.classList.add('trash');
+        trash.setAttribute('src', './images/trash-can-outline.svg');
+        deleteButt.appendChild(trash);
 
-//add the "By:" & "Pages:" <p>'s and buttons to each card
-//make sure new books have .unread class
+        cardContainer.appendChild(bookCard);
+        bookCard.appendChild(hTwo);
+        bookCard.appendChild(para1);
+        bookCard.appendChild(para2);
+        bookCard.appendChild(bookButtons);
+        bookButtons.appendChild(readAndCheck);
+        readAndCheck.appendChild(readButton);
+        readAndCheck.appendChild(readCheck);
+        bookButtons.appendChild(deleteButt);
+    });
+}
 
+//add book info from the form input and add it to the library array
 function addNewBook(e) {
     e.preventDefault();
-    console.log('add book clicked')
+
     if (bookTitle.value === '') {
         return alert('Please fill out Book Title');
     } else if (bookAuthor.value === '') {
@@ -47,10 +87,12 @@ function addNewBook(e) {
     library.push(newBook);
     console.log(library);
     form.reset();
-    unreadCount++; //will this go here or in the library card function?
-    updateUnreadCount(); //will this go here or in the library card function?
+    makeBookCard();
+    unreadCount++; 
+    updateUnreadCount(); 
 }
 
+//Read button - changes background and adds a check on 'read' cards
 function readUnread(event) {
     const thisCard = event.target.closest('.card');
 
