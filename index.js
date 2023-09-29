@@ -90,17 +90,26 @@ function makeBookCard(newBook) {
 
         //Delete book when button is clicked
         function deleteBook(event) {  
-            console.log('delete')    //this is logging
-            if (event.target.classList.contains('delete')) {
-                bookCard.remove(); //this is not happening - is it because it's still inside the function where it's being created? It doesn't work outside the function either...
-            } //need to update read or unread - how do I find the status? 
+            bookCard.remove(); 
+            if (readButton.classList.contains('unread')) {
+                unreadCount--;
+                updateUnreadCount();
+            } else if (readButton.classList.contains('read')) {
+                readCount--;
+                updateReadCount();
+            }
         }
 
         readButton.addEventListener('click', readUnread);
         deleteButt.addEventListener('click', deleteBook);   
 }
 
-
+//Book constructor
+function Book(title, author, pages) {
+    this.title = title; 
+    this.author = author;
+    this.pages = pages;
+}
 
 //Add book info from the form input and add it to the library array
 function addNewBook(e) {
@@ -113,12 +122,12 @@ function addNewBook(e) {
     } else if (bookPages.value === '') {
         return alert('Please fill out Number of Pages');
     }
-
-    const newBook = {
-        title: capitalize(bookTitle.value), 
-        author: capitalize(bookAuthor.value),  
-        pages: bookPages.value
-    }
+    
+    const newBook = new Book (
+        capitalize(bookTitle.value), 
+        capitalize(bookAuthor.value),  
+        bookPages.value
+    )
 
     library.push(newBook);
     form.reset();
